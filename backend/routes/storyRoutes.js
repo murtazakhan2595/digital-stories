@@ -1,22 +1,28 @@
 const express = require("express");
+// const multer = require("multer");
 const storyController = require("./../controllers/storyController");
 const authController = require("./../controllers/authController");
 
+// const upload = multer({ dest: "storage/img/stories" });
+
 const router = express.Router();
+
+// Protect all routes after this middleware
+router.use(authController.protect);
 
 router
   .route("/")
-  .get(authController.protect, storyController.getAllStories)
-  .post(authController.protect, storyController.createStory);
+  .get(storyController.getAllStories)
+  .post(storyController.createStory);
 
-router
-  .route("/myStories")
-  .get(authController.protect, storyController.getMyStories);
+router.route("/myStories").get(storyController.getMyStories);
+
+router.get("/trending", storyController.getTrending);
 
 router
   .route("/:id")
-  .get(authController.protect, storyController.getStory)
-  .patch(authController.protect, storyController.updateStory)
-  .delete(authController.protect, storyController.deleteStory);
+  .get(storyController.getStory)
+  .patch(storyController.updateStory)
+  .delete(storyController.deleteStory);
 
 module.exports = router;

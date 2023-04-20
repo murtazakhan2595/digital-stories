@@ -9,8 +9,8 @@ router.post("/login", authController.login);
 
 // Protect all routes after this middleware
 router.use(authController.protect);
-router.get("/logout", authController.logout);
 
+router.get("/logout", authController.logout);
 router.patch("/updateMyPassword", authController.updatePassword);
 // router.get("/me", userController.getMe, userController.getUser);
 router.patch("/updateMe", userController.updateMe);

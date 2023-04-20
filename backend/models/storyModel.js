@@ -3,7 +3,11 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 
 const storySchema = new mongoose.Schema(
   {
-    mediaType: { type: String, required: true },
+    mediaType: {
+      type: String,
+      required: [true, "Please Enter Media type"],
+      enum: ["text", "image", "video"],
+    },
     font: { type: String },
     fontColor: { type: String },
     caption: { type: String },

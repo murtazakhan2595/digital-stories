@@ -97,8 +97,44 @@ exports.getStory = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getTrending = catchAsync(async (req, res, next) => {
+  const stories = await Story.find({ isPrivate: false })
+    .sort({
+      upVoteCount: -1,
+      commentCount: -1,
+    })
+    .limit(20)
+    .populate("postedBy");
+  return res.status(200).json({
+    status: "success",
+    result: stories.length,
+    data: {
+      stories,
+    },
+  });
+});
+
 exports.createStory = catchAsync(async (req, res, next) => {
-  const newStory = await Story.create(req.body);
+  const { id } = req.user;
+  const { mediaType } = req.body;
+  let newStory;
+  if (mediaType === "text") {
+    const { font, fontColor, caption, postedBy, isPrivate } = req.body;
+    newStory = await Story.create({
+      mediaType,
+      font,
+      caption,
+      fontColor,
+      postedBy,
+      isPrivate,
+      postedBy: id,
+    });
+  }
+  if (mediaType === "image") {
+  }
+  if (mediaType === "video") {
+  }
+
   res.status(201).json({
     status: "success",
     data: {

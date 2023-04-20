@@ -5,6 +5,10 @@ const globalErrorHandler = require("./controllers/errorController");
 
 const storyRouter = require("./routes/storyRoutes");
 const userRouter = require("./routes/userRoutes");
+const commentRouter = require("./routes/commentRoutes");
+const engagementRouter = require("./routes/engagementRoutes");
+const voteRouter = require("./routes/voteRoutes");
+const leaderBoardRouter = require("./routes/leaderBoardRoutes");
 
 const app = express();
 app.use(express.json());
@@ -15,6 +19,10 @@ app.use(morgan("dev"));
 // 3) ROUTES
 app.use("/stories", storyRouter);
 app.use("/users", userRouter);
+app.use("/comments", commentRouter);
+app.use("/engagements", engagementRouter);
+app.use("/votes", voteRouter);
+app.use("/leaderboard", leaderBoardRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
