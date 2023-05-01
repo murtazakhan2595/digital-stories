@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // 1) MIDDLEWARES
 app.use(morgan("dev"));
+app.use(cookieParser());
 
 // 3) ROUTES
 app.use("/stories", storyRouter);
