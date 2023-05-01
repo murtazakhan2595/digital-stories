@@ -1,0 +1,35 @@
+/* .input {
+    background: #444;
+    border: none;
+    padding: 10px 20px;
+    width: 200px;
+    color: #f7f7f7;
+    font-size: 18px;
+    border-radius: 10px;
+    outline: none;
+} */
+
+.textInput {
+    background-color: #323232;
+    border: none;
+    width: 240px;
+    padding: 10px 20px;
+    /* top-bottom left right */
+    color: #bebcc0;
+    font-size: 18px;
+    border-radius: 10px;
+    outline: none;
+    margin: 15px auto;
+    margin-bottom: 10px;
+}
+
+.formFieldErrorStyle {
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: #de1b55;
+}
+
+.fieldErrorMessage {
+    color: #de1b55;
+    text-align: left;
+}
