@@ -19,7 +19,8 @@
 
 } */
 .button {
-    background-color: #0077ff;
+    /* background-color: #0077ff; */
+    background: #777;
     padding: 10px 20px;
     border: none;
     border-radius: 30px;
@@ -35,7 +36,8 @@
 
 .button:hover,
 .button:disabled {
-    background-color: #014a9c;
+    /* background-color: #014a9c; */
+    background: #444;
 }
 
 .buttonTitle {

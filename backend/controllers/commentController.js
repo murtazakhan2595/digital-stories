@@ -16,7 +16,7 @@ exports.createComment = catchAsync(async (req, res, next) => {
   const { text, story } = req.body;
   const newComment = await Comment.create({
     text,
-    id,
+    user: id,
     story,
   });
 
@@ -56,6 +56,6 @@ exports.getCommentsByPostId = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: "success",
     result: comments.length,
-    data: comments,
+    comments,
   });
 });

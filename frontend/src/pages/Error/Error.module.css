@@ -1,0 +1,10 @@
+.errorHeader {
+  font-size: 86px;
+  color: #de1b55;
+  font-weight: bold;
+}
+
+.error {
+  font-weight: bold;
+  color: #c4c5c5;
+}

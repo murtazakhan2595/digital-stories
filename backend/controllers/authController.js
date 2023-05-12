@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const User = require("./../models/userModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
+const Jimp = require("jimp");
+const path = require("path");
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -28,6 +30,7 @@ const createSendToken = (user, statusCode, res) => {
   res.status(statusCode).json({
     status: "success",
     token,
+    auth: true,
     data: {
       user,
     },
@@ -36,15 +39,32 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signup = catchAsync(async (req, res, next) => {
   let { avatarPath } = req.body;
+  let imgPath = process.env.DEFAULT_AVATAR;
   if (!avatarPath) {
-    avatarPath = process.env.DEFAULT_AVATAR;
+    avatarPath = imgPath;
   }
+  if (avatarPath !== process.env.DEFAULT_AVATAR) {
+    const buffer = Buffer.from(
+      avatarPath.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""),
+      "base64"
+    );
+
+    imgPath = `${Date.now()}-${Math.round(Math.random() * 100000)}.png`;
+    const jimpRes = await Jimp.read(buffer);
+    jimpRes
+      .resize(200, Jimp.AUTO)
+      .write(path.resolve(__dirname, `../storage/${imgPath}`));
+  }
+
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-    avatarPath,
+    avatarPath:
+      imgPath === process.env.DEFAULT_AVATAR
+        ? imgPath
+        : `http://localhost:5544/storage/${imgPath}`,
   });
   createSendToken(newUser, 201, res);
 });
@@ -67,23 +87,19 @@ exports.login = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, res);
 });
 
-exports.logout = (req, res) => {
-  // res.cookie("jwt", "loggedout", {
-  //   expires: new Date(Date.now() + 10 * 1000),
-  //   httpOnly: true,
-  // });
-  let { jwt } = req.cookies;
-  console.log(jwt);
+exports.logout = catchAsync(async (req, res) => {
+  // let { jwt } = req.cookies;
   res.clearCookie("jwt");
-  let newjwt = req.cookies.jwt;
-  console.log("//////////////////////////////////");
-  console.log(newjwt);
-  res.status(200).json({ status: "success" });
-};
+  res.json({ user: null, auth: false });
+});
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
-  let token;
+
+  let token = req.cookies.jwt;
+  console.log("cokieeeeeeee");
+  console.log(token);
+
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -140,4 +156,47 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
   // 4) Log user in, send JWT
   createSendToken(user, 200, res);
+});
+
+exports.refresh = catchAsync(async (req, res, next) => {
+  const { jwt: token } = req.cookies;
+  console.log("toeeeeeeeeeeeeeeeeeeeeekkkkkkkkkkk");
+  console.log(token);
+  if (!token) {
+    return next(
+      new AppError("You are not logged in! Please log in to get access.", 401)
+    );
+  }
+  // 2) Verification token
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+  // 3) Check if user still exists
+  const currentUser = await User.findById(decoded.id);
+  console.log(currentUser);
+  if (!currentUser) {
+    return next(
+      new AppError(
+        "The user belonging to this token does no longer exist.",
+        401
+      )
+    );
+  }
+
+  // 4) Check if user changed password after the token was issued
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    return next(
+      new AppError("User recently changed password! Please log in again.", 401)
+    );
+  }
+
+  // GRANT ACCESS TO PROTECTED ROUTE
+  req.user = currentUser;
+  res.status(200).json({
+    status: "success",
+    token,
+    auth: true,
+    data: {
+      user: currentUser,
+    },
+  });
 });

@@ -1,0 +1,33 @@
+.buttonGroup {
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 5px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20%;
+  margin-bottom: 20%;
+}
+
+.groupButton {
+  /* https://stackoverflow.com/questions/37386244/what-does-flex-1-mean#:~:text=If%20an%20element%20has%20flex,See%20the%20illustration%20below. */
+  flex: 1;
+  background-color: #f7f7f7;
+  color: #777;
+  border: none;
+  padding: 8px 14px;
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.groupButton:hover {
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #444;
+  color: #f7f7f7;
+}

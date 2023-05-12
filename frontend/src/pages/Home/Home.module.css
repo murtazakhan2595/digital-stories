@@ -1,0 +1,216 @@
+.storiesHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.searchBox {
+    background-color: #fff;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 10px;
+    min-width: 300px;
+    border-radius: 20px;
+    border: 0.5px solid #777;
+}
+
+.searchBox img {
+    width: 20px;
+    height: 20px;
+}
+
+.searchInput {
+    background: transparent;
+    outline: none;
+    border: none;
+    color: #444;
+    padding: 5px 10px;
+    font-size: 18px;
+    width: 100%;
+    /* Take 100% of its parent's width */
+}
+
+.searchButton {
+    color: #f7f7f7;
+    background-color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    outline: none;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.searchButton:hover,
+.searchButton:disabled {
+    background-color: #444;
+}
+
+.createStoryButton {
+    display: flex;
+    align-items: center;
+    background-color: #777;
+    padding: 8px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.createStoryButton:hover {
+    background: #444;
+}
+
+.createStoryButton img {
+    width: 20px;
+    height: 20px;
+}
+
+.createStoryButton span {
+    margin-left: 5px;
+    color: #f7f7f7;
+    font-weight: bold;
+    font-size: 16px;
+    
+}
+
+/* grid gives some issues so moving back to flex */
+.storyGrid {
+    margin: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.storyList {
+    margin: 50px 0;
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.storyCustomization {
+    margin: 20px 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.storyCustomization {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.storyCustomization img {
+    width: 35px;
+    height: 35px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.activeView {
+    background-color: #444;
+    border-radius: 5px;
+}
+
+.paginationWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginationWrapper button {
+    margin: 0 5px;
+    background-color: #777;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    margin: 15px auto;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: #f7f7f7;
+}
+
+.paginationWrapper button:hover,
+.paginationWrapper button:disabled {
+    background-color: #444;
+    color: #fff;
+}
+
+.buttonGroup {
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.groupButton {
+    /* https://stackoverflow.com/questions/37386244/what-does-flex-1-mean#:~:text=If%20an%20element%20has%20flex,See%20the%20illustration%20below. */
+    flex: 1;
+    background-color: #fff;
+    color: #777;
+    border: none;
+    padding: 8px 14px;
+    font-weight: bold;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.groupButton:hover {
+    background-color: #444;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sortByActive {
+    background-color: #777;
+    color: #f7f7f7;
+}
+
+.sortByHeader {
+    margin: 15px 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sortByHeader p {
+    margin-right: 10px;
+}
+.view{
+    background-color: #777;
+    margin-right: 10px;
+    border-radius: 10px;
+
+}

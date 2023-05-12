@@ -1,6 +1,6 @@
-import React from 'react';
-import Card from '../Card/Card';
-import styles from './Spinner.module.css';
+import React from "react";
+import Card from "../Card/Card";
+import styles from "./Spinner.module.css";
 
 function Spinner({ message }) {
   return (
@@ -26,7 +26,7 @@ function Spinner({ message }) {
             <path d="M95.65 111.306a50.004 50.004 0 0 1-62.944-7.915 49.999 49.999 0 1 1 85.053-23.32l-8.737-1.984A41.042 41.042 0 0 0 58.147 29.42a41.04 41.04 0 1 0 32.728 74.305l4.775 7.581Z" />
           </mask>
           <path
-            stroke="#07F"
+            stroke="#444"
             strokeWidth="18"
             d="M95.65 111.306a50.004 50.004 0 0 1-62.944-7.915 49.999 49.999 0 1 1 85.053-23.32l-8.737-1.984A41.042 41.042 0 0 0 58.147 29.42a41.04 41.04 0 1 0 32.728 74.305l4.775 7.581Z"
             mask="url(#a)"

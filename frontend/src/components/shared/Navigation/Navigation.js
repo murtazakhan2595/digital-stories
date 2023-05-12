@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Navigation.module.css";
-// import ProfileModal from "../../ProfileModal/ProfileModal";
+import ProfileModal from "../../ProfileModal/ProfileModal";
 import { setActiveRoute } from "../../../store/navbarSlice";
 import { resetUserReg } from "../../../store/userRegistrationSlice";
 import { resetStep } from "../../../store/multiStepFormSlice";
@@ -55,7 +55,7 @@ function Navigation() {
     dispatch(setActiveRoute(route));
   };
 
-  const activeRouteStyle = "3px solid #0077ff";
+  const activeRouteStyle = "3px solid #f7f7f7";
 
   const navBarClickHandler = (newActive) => {
     activeRouteHandler(newActive);
@@ -67,11 +67,11 @@ function Navigation() {
         <Link
           style={logoStyle}
           to="/"
-          // onClick={() => {
-          //   dispatch(resetUserReg());
-          //   dispatch(resetStep());
-          //   navBarClickHandler("home");
-          // }}
+          onClick={() => {
+            dispatch(resetUserReg());
+            dispatch(resetStep());
+            navBarClickHandler("home");
+          }}
         >
           <span style={logoText}>Digital Stories</span>
         </Link>
@@ -80,7 +80,7 @@ function Navigation() {
           <Link
             style={navElementStyle}
             to="/home"
-            // onClick={() => navBarClickHandler("home")}
+            onClick={() => navBarClickHandler("home")}
           >
             <span
               style={{
@@ -97,7 +97,7 @@ function Navigation() {
           <Link
             style={navElementStyle}
             to="/trending"
-            // onClick={() => navBarClickHandler("trending")}
+            onClick={() => navBarClickHandler("trending")}
           >
             <span
               style={{
@@ -114,7 +114,7 @@ function Navigation() {
           <Link
             style={navElementStyle}
             to="/leaderboard"
-            // onClick={() => navBarClickHandler("leaderboard")}
+            onClick={() => navBarClickHandler("leaderboard")}
           >
             <span
               style={{
@@ -131,7 +131,7 @@ function Navigation() {
           <Link
             style={navElementStyle}
             to="/engagements"
-            // onClick={() => navBarClickHandler("engagements")}
+            onClick={() => navBarClickHandler("engagements")}
           >
             <span
               style={{
@@ -148,7 +148,7 @@ function Navigation() {
           <Link
             style={navElementStyle}
             to="/my-stories"
-            // onClick={() => navBarClickHandler("me")}
+            onClick={() => navBarClickHandler("me")}
           >
             <span
               style={{
@@ -165,7 +165,7 @@ function Navigation() {
           <div className={styles.navRight}>
             <button
               className={styles.avatarWrapper}
-              // onClick={showModalHandler}
+              onClick={showModalHandler}
               type="button"
             >
               <img className={styles.avatar} src={user.avatar} alt="avatar" />
@@ -173,7 +173,7 @@ function Navigation() {
           </div>
         )}
       </nav>
-      {/* {modal && <ProfileModal closeModalHandler={closeModalHandler} />} */}
+      {modal && <ProfileModal closeModalHandler={closeModalHandler} />}
     </>
   );
 }

@@ -25,7 +25,6 @@ exports.getEngagements = catchAsync(async (req, res, next) => {
     .sort({ createdAt: -1 })
     .limit(10)
     .populate("byUser onPost forUser");
-
   return res.status(200).json({
     result: yourEngagments.length + othersEngagements.length,
     you: yourEngagments,

@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -12,7 +13,16 @@ const voteRouter = require("./routes/voteRoutes");
 const leaderBoardRouter = require("./routes/leaderBoardRoutes");
 
 const app = express();
-app.use(express.json());
+
+const corsOptions = {
+  credentials: true,
+  origin: ["http://localhost:3000"],
+};
+app.use(cors(corsOptions));
+app.use("/storage", express.static("storage"));
+// app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb" }));
 
 // 1) MIDDLEWARES
 app.use(morgan("dev"));

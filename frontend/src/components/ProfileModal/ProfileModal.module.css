@@ -1,0 +1,77 @@
+.modalMask {
+  position: fixed; /* take full screen */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalBody {
+  width: 50%;
+  max-width: 600px; /* for huge screens*/
+  background-color: #444;
+  border-radius: 20px;
+  position: relative;
+}
+
+.modalContent {
+  margin-top: 30px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* row wise */
+  justify-content: center;
+}
+
+.heading {
+  margin-bottom: 5px;
+}
+
+.closeButton {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover; /*todo*/
+  border: 5px solid #f7f7f7;
+  margin: 5px 20px;
+  margin-right: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.name {
+  font-weight: 900;
+  color: #f7f7f7;
+  font-size: 28px;
+}
+
+.username {
+  /* font-weight: 900; */
+  color: #f7f7f7;
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.memberSince {
+  color: #f7f7f7;
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.signOutButton {
+  margin-top: 30px;
+}

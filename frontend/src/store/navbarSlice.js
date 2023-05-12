@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  activeRoute: 'home',
+  activeRoute: "home",
 };
 
 export const navbarSlice = createSlice({
-  name: 'navbar',
+  name: "navbar",
   initialState,
   reducers: {
     setActiveRoute: (state, action) => {
@@ -13,7 +13,7 @@ export const navbarSlice = createSlice({
     },
     // eslint-disable-next-line no-unused-vars
     resetActiveRoute: (state, action) => {
-      state.activeRoute = 'home';
+      state.activeRoute = "home";
     },
   },
 });

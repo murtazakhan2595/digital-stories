@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Card from '../../../components/shared/Card/Card';
-import Button from '../../../components/shared/Button/Button';
-import styles from './StepProfilePicture.module.css';
-import { registerUser } from '../../../api';
-import { setAuth } from '../../../store/authSlice';
-import formStyles from '../MultiStepForm.module.css';
-import { delStep } from '../../../store/multiStepFormSlice';
-import { setAvatar } from '../../../store/userRegistrationSlice';
-import { setUser } from '../../../store/userSlice';
-import Spinner from '../../../components/shared/Spinner/Spinner';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Card from "../../../components/shared/Card/Card";
+import Button from "../../../components/shared/Button/Button";
+import styles from "./StepProfilePicture.module.css";
+import { registerUser } from "../../../api";
+import { setAuth } from "../../../store/authSlice";
+import formStyles from "../MultiStepForm.module.css";
+import { delStep } from "../../../store/multiStepFormSlice";
+import { setAvatar } from "../../../store/userRegistrationSlice";
+import { setUser } from "../../../store/userSlice";
+import Spinner from "../../../components/shared/Spinner/Spinner";
 
 function StepProfilePicture() {
   const [picture, setPicture] = useState(
-    'http://localhost:5544/storage/default.png'
+    "http://localhost:5544/storage/default.png"
   );
 
-  const [error, setError] = useState('');
+  const [frontendError, setFrontendError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -26,14 +26,18 @@ function StepProfilePicture() {
   const onCreateAccountHandler = async () => {
     setLoading(true);
     const response = await registerUser(dataFromStore);
-    if (response.status === 201) {
-      dispatch(setAuth(response.data));
-      dispatch(setUser(response.data));
-    } else {
-      setLoading(false);
-      setError(response.response.data.message);
-    }
+    console.log(response);
 
+    if (response.code === "ERR_BAD_RESPONSE") {
+      setLoading(false);
+      setFrontendError("User already register with this Email!");
+      return;
+    }
+    const { data } = response;
+    if (data.status === "success") {
+      dispatch(setAuth(data.auth));
+      dispatch(setUser(data.data.user));
+    }
     setLoading(false);
   };
 
@@ -92,7 +96,9 @@ function StepProfilePicture() {
               buttontitle="Create Account"
               buttonimage="arrow_right"
             />
-            {error !== '' && <div className={styles.errorWrapper}>{error}</div>}
+            {frontendError !== "" && (
+              <div className={styles.errorWrapper}>{frontendError}</div>
+            )}
           </div>
         </Card>
       </div>

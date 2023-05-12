@@ -1,35 +1,26 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_PATH,
   withCredentials: true,
   headers: {
-    'Content-type': 'application/json',
-    Accept: 'application/json',
-    'Access-Control-Allow-Headers': 'X-UserSession',
+    "Content-type": "application/json",
+    Accept: "application/json",
+    "Access-Control-Allow-Headers": "X-UserSession",
   },
 });
 
 export const registerUser = async (data) => {
+  let response;
   try {
-    const response = await api.post('/api/register', {
+    response = await api.post("users/signup", {
       name: data.name,
-      username: data.username,
+      // username: data.username,
       password: data.password,
+      passwordConfirm: data.password,
       email: data.email,
       avatarPath: data.avatar,
     });
-
-    return response;
-  } catch (error) {
-    return error;
-  }
-};
-
-export const getCurrentUser = async () => {
-  let response;
-  try {
-    response = await api.get('/api/me');
   } catch (error) {
     return error;
   }
@@ -39,8 +30,8 @@ export const getCurrentUser = async () => {
 export const login = async (data) => {
   let response;
   try {
-    response = await api.post('/api/login', {
-      username: data.username,
+    response = await api.post("users/login", {
+      email: data.email,
       password: data.password,
     });
   } catch (error) {
@@ -49,32 +40,39 @@ export const login = async (data) => {
   return response;
 };
 
+export const getCurrentUser = async () => {
+  let response;
+  try {
+    response = await api.get("/api/me");
+  } catch (error) {
+    return error;
+  }
+  return response;
+};
+
 // https://stackoverflow.com/a/44806250
-export const logout = async () => api.post('/api/logout');
+export const logout = async () => api.post("users/logout");
 
-export const getAllStories = async (page) =>
-  api.get(`/api/stories?page=${page}`);
+export const getAllStories = async (page) => api.get(`stories?page=${page}`);
 
-export const getMyStories = async (page, id) =>
-  api.get(`/api/stories?page=${page}&userId=${id}`);
+export const getMyStories = async (page) =>
+  api.get(`stories/myStories?page=${page}`);
 
-export const getTrendingStories = async () => api.get('/api/trending');
+export const getTrendingStories = async () => api.get("stories/trending");
 
-export const getStoryById = async (id) => api.get(`/api/stories/${id}`);
+export const getStoryById = async (id) => api.get(`stories/${id}`);
 
 export const createStory = async (story) => {
   let response;
 
-  if (story.mediaType === 'text') {
+  if (story.mediaType === "text") {
     try {
-      const { mediaType, caption, font, fontColor, postedBy, isPrivate } =
-        story;
-      response = await api.post('/api/stories', {
+      const { mediaType, caption, font, fontColor, isPrivate } = story;
+      response = await api.post("stories/", {
         mediaType,
         caption,
         font,
         fontColor,
-        postedBy,
         isPrivate,
       });
     } catch (error) {
@@ -83,14 +81,13 @@ export const createStory = async (story) => {
     return response;
   }
 
-  if (story.mediaType === 'image') {
+  if (story.mediaType === "image") {
     try {
-      const { mediaType, caption, image, postedBy, isPrivate } = story;
-      response = await api.post('/api/stories', {
+      const { mediaType, caption, image, isPrivate } = story;
+      response = await api.post("stories/", {
         mediaType,
         caption,
         image,
-        postedBy,
         isPrivate,
       });
     } catch (error) {
@@ -105,7 +102,7 @@ export const createStory = async (story) => {
 export const createVideoStory = async (data, config) => {
   let response;
   try {
-    response = await api.post('/api/stories/video', data, config);
+    response = await api.post("stories/video", data, config);
   } catch (error) {
     return error;
   }
@@ -115,7 +112,7 @@ export const createVideoStory = async (data, config) => {
 export const updateVideoStory = async (data, config) => {
   let response;
   try {
-    response = await api.put('/api/stories/video', data, config);
+    response = await api.put("stories/video", data, config);
   } catch (error) {
     return error;
   }
@@ -125,10 +122,10 @@ export const updateVideoStory = async (data, config) => {
 export const updateStory = async (story) => {
   let response;
 
-  if (story.mediaType === 'text') {
+  if (story.mediaType === "text") {
     try {
       const { mediaType, caption, font, fontColor, storyId } = story;
-      response = await api.put('/api/stories', {
+      response = await api.put("stories", {
         mediaType,
         caption,
         font,
@@ -141,10 +138,10 @@ export const updateStory = async (story) => {
     return response;
   }
 
-  if (story.mediaType === 'image') {
+  if (story.mediaType === "image") {
     try {
       const { mediaType, caption, image, storyId } = story;
-      response = await api.put('/api/stories', {
+      response = await api.put("stories", {
         mediaType,
         caption,
         image,
@@ -160,7 +157,7 @@ export const updateStory = async (story) => {
 };
 
 export const updateStoryAccessMode = async (storyId, isPrivate) => {
-  const response = await api.put('/api/stories/mode', {
+  const response = await api.put("stories/mode", {
     storyId,
     isPrivate,
   });
@@ -171,8 +168,8 @@ export const updateStoryAccessMode = async (storyId, isPrivate) => {
 export const createComment = async (data) => {
   let response;
   try {
-    const { text, user, story } = data;
-    response = await api.post('/api/comment', { text, user, story });
+    const { text, story } = data;
+    response = await api.post("comments", { text, story });
   } catch (error) {
     return error;
   }
@@ -182,8 +179,8 @@ export const createComment = async (data) => {
 export const upVoteStory = async (data) => {
   let response;
   try {
-    const { user, post, postedBy } = data;
-    response = await api.post('/api/upvote', { user, post, postedBy });
+    const { post, postedBy } = data;
+    response = await api.post("votes/upvote", { post, postedBy });
   } catch (error) {
     return error;
   }
@@ -193,8 +190,8 @@ export const upVoteStory = async (data) => {
 export const downVoteStory = async (data) => {
   let response;
   try {
-    const { user, post, postedBy } = data;
-    response = await api.post('/api/downvote', { user, post, postedBy });
+    const { post, postedBy } = data;
+    response = await api.post("votes/downvote", { post, postedBy });
   } catch (error) {
     return error;
   }
@@ -204,49 +201,50 @@ export const downVoteStory = async (data) => {
 export const getCommentsByPostId = async (id) => {
   let response;
   try {
-    response = await api.get(`/api/comments/${id}`);
+    response = await api.get(`comments/${id}`);
   } catch (error) {
     return error;
   }
   return response;
 };
 
-export const deletePostById = async (id) => api.delete(`/api/stories/${id}`);
+export const deletePostById = async (id) => api.delete(`stories/${id}`);
 
-export const getVoteStatus = async (user, post) =>
-  api.post('/api/vote-status', { user, post });
+export const getVoteStatus = async (post) =>
+  api.post("votes/vote-status/", { post });
 
-export const getNumUsers = async () => api.get('/api/num-users');
+export const getNumUsers = async () => api.get("users/num-users");
 
-export const getLeaderboard = async () => api.get('/api/leaderboard');
+export const getLeaderboard = async () => api.get("leaderboard/");
 
-export const getEngagements = async (id) => api.get(`/api/engagements/${id}`);
+export const getEngagements = async () => api.get(`engagements/`);
 
 // interceptor for auto token refresh
-api.interceptors.response.use(
-  (config) => config,
-  // eslint-disable-next-line consistent-return
-  async (error) => {
-    const originalRequest = error.config;
+// api.interceptors.response.use(
+//   (config) => config,
+//   // eslint-disable-next-line consistent-return
+//   async (error) => {
+//     const originalRequest = error.config;
 
-    if (
-      error.response.status === 401 &&
-      originalRequest &&
-      !originalRequest._isRetry
-    ) {
-      originalRequest.isRetry = true;
+//     if (
+//       error.response.status === 401 &&
+//       originalRequest &&
+//       !originalRequest._isRetry
+//     ) {
+//       originalRequest.isRetry = true;
 
-      try {
-        await axios.get(`${process.env.REACT_APP_API_PATH}/api/refresh`, {
-          withCredentials: true,
-        });
+//       try {
+//         await axios.get(`${process.env.REACT_APP_API_PATH}/api/refresh`, {
+//           withCredentials: true,
+//         });
 
-        return api.request(originalRequest);
-      } catch (err) {
-        return err;
-      }
-    }
-  }
-);
+//         return api.request(originalRequest);
+//       } catch (err) {
+//         return err;
+//       }
+//     }
+//   }
+// );
+// Add a request interceptor
 
 export default api;

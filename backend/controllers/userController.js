@@ -76,3 +76,8 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
     data: null,
   });
 });
+
+exports.getNumUsers = catchAsync(async (req, res, next) => {
+  const numUsers = await User.countDocuments();
+  return res.status(200).json({ numUsers });
+});

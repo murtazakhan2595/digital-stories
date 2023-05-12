@@ -11,7 +11,8 @@ const Landing = () => {
   }
 
   const signInStyle = {
-    color: "#0077ff",
+    // color: "#0077ff",
+    color: "#444",
     fontWeight: "bold",
     textDecoration: "none",
     marginLeft: "10px",

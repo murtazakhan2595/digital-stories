@@ -7,6 +7,6 @@ const router = express.Router();
 // Protect all routes after this middleware
 router.use(authController.protect);
 
-router.post("/comment", commentController.createComment);
-router.get("/comments/:id", commentController.getCommentsByPostId);
+router.post("/", commentController.createComment);
+router.get("/:id", commentController.getCommentsByPostId);
 module.exports = router;

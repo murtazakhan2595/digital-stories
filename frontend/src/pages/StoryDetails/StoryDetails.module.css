@@ -1,0 +1,169 @@
+.storyWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 20px auto;
+  justify-content: space-evenly;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  gap: 15px;
+  padding: 25px 0;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  justify-content: space-evenly;
+  margin: 20px auto;
+  border-radius: 10px;
+  max-width: 45%;
+  min-width: 45%;
+  gap: 15px;
+  padding: 15px 0;
+}
+
+.mediaWrapper {
+  background-color: #fff;
+  border: 1px solid #777;
+  color: #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+  border-radius: 10px;
+}
+
+.mediaStatsWrapper {
+  background-color: #444;
+  margin: 0 20px;
+  color: #c4c5c5;
+  border-radius: 10px;
+}
+
+.commentsWrapper {
+  background-color: #fff;
+  border: 1px solid #777;
+  margin: 30px;
+  border-radius: 10px;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.mediaStats {
+  display: flex;
+  padding: 30px;
+  font-size: 20px;
+  align-items: center; /* vertical */
+  justify-content: space-around;
+}
+
+.mediaStats div {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mediaStats img {
+  cursor: pointer;
+}
+
+.avatarWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0 20px;
+}
+
+.avatarImage {
+  object-fit: cover; /* maintain aspect ratio */
+}
+
+.storyHeader {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 20px;
+  align-items: center;
+}
+
+.storyHeaderFlex {
+  display: flex;
+}
+
+.storyHeader p {
+  margin: auto 0;
+}
+
+.storyDataWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.storyCreatedAt {
+
+  margin-top: 5px;
+  color: #777;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.postComment {
+  gap: 10px;
+}
+
+.updateStoryButton,
+.deleteStoryButton {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.updateOrDeleteControls {
+  display: flex;
+}
+
+.buttonGroup {
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 1px;
+  align-items: center;
+  justify-content: center;
+}
+
+.groupButton {
+  /* https://stackoverflow.com/questions/37386244/what-does-flex-1-mean#:~:text=If%20an%20element%20has%20flex,See%20the%20illustration%20below. */
+  flex: 1;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.groupButton:hover {
+  background-color: #222;
+  cursor: pointer;
+}

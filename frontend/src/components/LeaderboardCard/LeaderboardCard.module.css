@@ -1,0 +1,58 @@
+.leaderboardCardWrapper {
+  display: flex;
+  font-size: 25px;
+  border-radius: 10px;
+  background-color: #555;
+  margin: 30px 10px;
+  padding: 15px;
+  align-items: center;
+  text-align: center;
+  color: #c4c5c5;
+  padding-left: 10%;
+}
+
+.avatarWrapper {
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 5px;
+  border: 3.5px solid #f7f7f7;
+}
+
+.avatarImage {
+  object-fit: cover; /* maintain aspect ratio */
+}
+
+.username {
+  color: #f7f7f7;
+  font-weight: bold;
+  margin: 0 15px;
+}
+
+.dataWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.data {
+  width: 30%;
+  text-align: left;
+}
+
+.numStories {
+  color: #f7f7f7;
+  font-weight: bold;
+}
+
+.numUpVotes {
+  color: #f7f7f7;
+  font-weight: bold;
+}

@@ -1,23 +1,21 @@
 /* eslint-disable no-unused-vars */
-import { createSlice } from '@reduxjs/toolkit';
-import StepContactDetails from '../pages/MultiStepForm/StepContactDetails/StepContactDetails';
-import StepPassword from '../pages/MultiStepForm/StepPassword/StepPassword';
-import StepUsername from '../pages/MultiStepForm/StepUsername/StepUsername';
-import StepProfilePicture from '../pages/MultiStepForm/StepProfilePicture/StepProfilePicture';
+import { createSlice } from "@reduxjs/toolkit";
+import StepContactDetails from "../pages/MultiStepForm/StepContactDetails/StepContactDetails";
+import StepPassword from "../pages/MultiStepForm/StepPassword/StepPassword";
+import StepProfilePicture from "../pages/MultiStepForm/StepProfilePicture/StepProfilePicture";
 
 const initialState = {
   currentStep: 1,
 
   steps: {
     1: StepContactDetails,
-    2: StepUsername,
-    3: StepPassword,
-    4: StepProfilePicture,
+    2: StepPassword,
+    3: StepProfilePicture,
   },
 };
 
 export const multiStepFormSlice = createSlice({
-  name: 'multiStepForm',
+  name: "multiStepForm",
   initialState,
   reducers: {
     setStep: (state, action) => {

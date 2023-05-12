@@ -10,17 +10,18 @@
 } */
 
 .textInput {
-    background-color: #323232;
+    background-color: #fff;
     border: none;
     width: 240px;
     padding: 10px 20px;
     /* top-bottom left right */
-    color: #bebcc0;
+    color: #777;
     font-size: 18px;
     border-radius: 10px;
     outline: none;
     margin: 15px auto;
     margin-bottom: 10px;
+    border: 0.5px solid #777;
 }
 
 .formFieldErrorStyle {
