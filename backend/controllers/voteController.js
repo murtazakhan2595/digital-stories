@@ -14,7 +14,6 @@ exports.upVote = catchAsync(async (req, res, next) => {
     onPost: post,
   });
   if (voted) {
-    console.log("1");
     // delete record
     await Engagement.deleteOne({
       action: "upvote",
@@ -39,7 +38,6 @@ exports.upVote = catchAsync(async (req, res, next) => {
   });
 
   if (downvoted) {
-    console.log("1");
     await Engagement.deleteOne({
       action: "downvote",
       byUser: user,
@@ -79,7 +77,6 @@ exports.upVote = catchAsync(async (req, res, next) => {
     byUser: user,
     forUser: story.postedBy,
   });
-  console.log("3");
   await newUpvote.save();
 
   return res.status(200).json({ message: "voted successfully" });
@@ -122,7 +119,6 @@ exports.downVote = catchAsync(async (req, res, next) => {
   });
 
   if (voted) {
-    console.log("yehaw");
     await Engagement.deleteOne({
       action: "upvote",
       byUser: user,

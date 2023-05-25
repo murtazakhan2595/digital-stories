@@ -8,7 +8,6 @@ const Engagement = require("./../models/engagementModel");
 const Comment = require("./../models/commentModel");
 
 exports.getAllStories = catchAsync(async (req, res, next) => {
-  console.log("in getallstories");
   const page = parseInt(req.query.page, 10) || 1;
   const limit = 7;
   let stories;
@@ -34,7 +33,6 @@ exports.getAllStories = catchAsync(async (req, res, next) => {
   //   const obj = new StoryDTO(stories.docs[i]);
   //   storiesDto.push(obj);
   // }
-  // console.log(storiesDto);
 
   return res.status(200).json({
     status: "success",
@@ -176,7 +174,6 @@ exports.createStory = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteStory = catchAsync(async (req, res, next) => {
-  console.log("delete story");
   const story = await Story.findByIdAndDelete(req.params.id);
   if (!story) {
     return next(new AppError("No story found with that ID", 404));
@@ -185,7 +182,6 @@ exports.deleteStory = catchAsync(async (req, res, next) => {
   await Engagement.deleteMany({
     onPost: req.params.id,
   });
-  console.log("delete story end");
   res.status(204).json({
     status: "success",
     data: null,
@@ -269,7 +265,6 @@ exports.update = catchAsync(async (req, res, next) => {
 
   if (mediaType === "video") {
     const { caption } = req.body;
-    console.log(caption, mediaType, storyId);
 
     // if video middleware sends a filename then video should be updated
     // otherwise only caption should be updated

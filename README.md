@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Getting started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Digital Stories is a MERN application for sharing user created memories
 
-## Available Scripts
+## Deployed App
+The app is [deployed](https://digital-stories.onrender.com) on render.com
 
-In the project directory, you can run:
+## Demo
+A video demo for the app is available [here](https://drive.google.com/file/d/1c_Hjcbc5sg5yAgKE-pxTibf1-l84ixQo/view?usp=sharing)
 
-### `npm start`
+# Setting up the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repo git clone `git clone https://github.com/abdullah-2022-skipq/digital-stories.git`
+2. cd to the cloned folder `cd digital-stories`
+3. cd to the backend folder `cd backend`
+4. install the dependencies `npm install`
+5. set up the `.env` file according to `.env.example`
+6. set up the Mongo DB 
+7. run the backend server `npm run dev`
+8. cd to the frontend folder `cd ..\frontend`
+9. install dependencies `npm install`
+10. set up the `.env` file according to `.env.example`
+11. run the frontend server `npm run start`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Setting up the project on Docker
+1. Clone the repo git clone `git clone https://github.com/abdullah-2022-skipq/digital-stories.git`
+2. cd to the cloned folder `cd digital-stories`
+3. run the command `docker-compose -f docker-compose.dev.yml up -d --build`
 
-### `npm test`
+# Documentation
+Documentation is available [here](https://www.notion.so/Documentation-Digital-Stories-7d0419baaff84814a072110aea7a7a70)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 📷
+![image](https://user-images.githubusercontent.com/111970567/214354455-351317f3-f01a-49d1-8e3a-7e33e927c490.png)
 
-### `npm run build`
+![image](https://user-images.githubusercontent.com/111970567/214356118-d5be3842-3d45-4dc5-b910-497c1b5a9001.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Acknowledgements
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. [SkipQ](https://www.skipq.org) for the training 
+2. [Coder’s Gyan YouTube](https://www.youtube.com/channel/UCo9xTRmg1SqQ5JSsA2fAgJw) for awesome material on best practices and clean code
+3. [Icon Scout](https://www.iconscout.com) and [Icons 8](https://icons8.com/) for icons and other media assets
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br />
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="center">
+  <img src=https://user-images.githubusercontent.com/111970567/214841637-f169cef4-7704-42a5-a25f-f2a09f30dc95.svg />
+</p>

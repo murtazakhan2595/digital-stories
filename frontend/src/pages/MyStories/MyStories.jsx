@@ -14,7 +14,6 @@ function MyStories() {
   useEffect(() => {
     (async () => {
       const response = await getMyStories(currentPage);
-      console.log(response.data.data.stories);
       const dataFromApi = response.data.data.stories;
 
       sethasNextPage(response.data.data.hasNextPage);

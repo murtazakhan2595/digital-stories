@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -21,8 +22,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use("/storage", express.static("storage"));
 // app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb" }));
+// app.use(express.urlencoded({ limit: "50mb" }));
 
 // 1) MIDDLEWARES
 app.use(morgan("dev"));

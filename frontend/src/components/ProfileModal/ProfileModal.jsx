@@ -19,7 +19,6 @@ function ProfileModal({ closeModalHandler }) {
 
   const signOutHandler = async () => {
     const response = await logout();
-    console.log(response.data);
     dispatch(setAuth(response.data.auth));
     dispatch(resetStep());
     dispatch(resetActiveRoute());
