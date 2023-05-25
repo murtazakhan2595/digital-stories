@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
+disableReactDevTools();
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

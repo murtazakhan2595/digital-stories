@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
+const path = require("path");
 
 const storyRouter = require("./routes/storyRoutes");
 const userRouter = require("./routes/userRoutes");
@@ -38,6 +39,12 @@ app.use("/comments", commentRouter);
 app.use("/engagements", engagementRouter);
 app.use("/votes", voteRouter);
 app.use("/leaderboard", leaderBoardRouter);
+
+// static files
+app.use(express.static(path.join(__dirname, "./../frontend/build")));
+app.get("*", (res, res) => {
+  res.sendFile(path.join(__dirname, "./../frontend/build/index.html"));
+});
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
