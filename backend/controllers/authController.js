@@ -97,8 +97,6 @@ exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
 
   let token = req.cookies.jwt;
-  console.log("cokieeeeeeee");
-  console.log(token);
 
   if (
     req.headers.authorization &&
@@ -160,8 +158,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
 exports.refresh = catchAsync(async (req, res, next) => {
   const { jwt: token } = req.cookies;
-  console.log("toeeeeeeeeeeeeeeeeeeeeekkkkkkkkkkk");
-  console.log(token);
+
   if (!token) {
     return next(
       new AppError("You are not logged in! Please log in to get access.", 401)
@@ -172,7 +169,6 @@ exports.refresh = catchAsync(async (req, res, next) => {
 
   // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id);
-  console.log(currentUser);
   if (!currentUser) {
     return next(
       new AppError(

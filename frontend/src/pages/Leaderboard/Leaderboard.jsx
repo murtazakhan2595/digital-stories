@@ -9,7 +9,6 @@ function Leaderboard() {
   useEffect(() => {
     (async () => {
       const response = await getLeaderboard();
-      console.log(response.data.result[0].postedBy.avatarPath);
 
       if (response.status === 200) {
         setLeaderboard(response.data.result);

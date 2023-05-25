@@ -11,7 +11,6 @@ function Engagements() {
   useEffect(() => {
     (async () => {
       const response = await getEngagements();
-      console.log(response);
       if (response.status === 200) {
         const yourData = response.data.you;
         const othersData = response.data.others;

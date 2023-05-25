@@ -26,7 +26,6 @@ function StepProfilePicture() {
   const onCreateAccountHandler = async () => {
     setLoading(true);
     const response = await registerUser(dataFromStore);
-    console.log(response);
 
     if (response.code === "ERR_BAD_RESPONSE") {
       setLoading(false);

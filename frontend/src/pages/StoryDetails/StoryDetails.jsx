@@ -100,7 +100,6 @@ function StoryDetails() {
       const commentsResponse = await getCommentsByPostId(id);
       setStoryComments(commentsResponse.data.comments);
 
-      console.log(user, storyRes.postedBy._id);
       // check if user owns story
       if (user === storyRes.postedBy._id) {
         setOwnsStory(true);

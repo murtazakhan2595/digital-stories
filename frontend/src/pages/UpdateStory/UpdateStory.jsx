@@ -8,8 +8,6 @@ import VideoStoryUpdate from "./Video/VideoStoryUpdate";
 function UpdateStory() {
   const location = useLocation();
   const { story } = location.state;
-  console.log("lllllllllllllll");
-  console.log(story);
 
   return (
     <div className="cardWrapper">
